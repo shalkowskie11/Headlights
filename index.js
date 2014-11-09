@@ -27,6 +27,6 @@ app.get('/', function (req, res) {
 	res.sendfile('layouts/posts.html')
 })
 
-app.listen(3000, function () {
+app.listen(5000, function () {
 	console.log('Server listening on', 5000)
 })

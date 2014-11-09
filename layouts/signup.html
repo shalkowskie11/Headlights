@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+</head>
+<body ng-app='app'>
+	<div ng-controller='SignUpCtrl' class="container">
+		<form role ='form' class='form-horizontal'>
+			<legend>Sign Up</legend>
+			<div class="control-group">
+				<label class="control-label">
+					User Name
+				</label>
+					<input ng-model='postUsername' class = 'form-control' />
+			</div>
+			<div class="control-group">
+				<label class="control-label">
+					Password
+				</label>
+					<input ng-model='postPassword' class = 'form-control' />
+			</div>
+			<div class="control-group">
+				<label class="control-label">
+					State
+				</label>
+					<input ng-model='postState' class = 'form-control' />
+			</div>
+			<div class="control-group">
+				<label class="control-label">
+					License Plate #
+				</label>
+					<input ng-model='postLP' class = 'form-control' />
+			</div>
+			<div class="control-group">
+				<label class="control-label">
+					Email Address
+				</label>
+					<input ng-model='postEmail' class = 'form-control' />
+			</div>
+			<div class="control-group">
+				<label class="control-label">
+					Phone Number
+				</label>
+					<input ng-model='postPhone' class = 'form-control' />
+			</div>
+			<div class="control-group">
+					<button ng-click='submitSignUp()' class='btn btn-success'>Add Post</button>
+			</div>
+		</form>
+	</div>
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js'></script>
+	<script>
+		var app = angular.module('app', [])
+		app.controller('SignUpCtrl', function ($scope, $http){
+			//Major Refactor for validation required, works for prototype
+		  $scope.submitSignUp = function () {
+		  	if($scope.postUsername){
+		  		if($scope.postUsername){
+			  		if($scope.postState){
+			  			if($scope.postLP){
+			  				if($scope.postEmail){
+			  					if($scope.postPhone){
+								  	$http.post('/api/signup', {
+								  		username: $scope.postUsername,
+								  		password: $scope.postPassword
+								  		state: $scope.postState,
+								  		licensePlate: $scope.postLP,
+								  		email: $scope.postEmail,
+								  		phone: $scope.postPhone
+								  	}).success(function (post) {
+								  		console.log("here")
+								  	})
+								  	}
+								  	else{
+								  		//No Phone Number
+								  		alert("No Phone Number")
+								  	}
+								}
+								else{
+									//no email
+									alert("No Email")
+								}
+							}
+							else{
+								//no License Plate
+								alert("No License Plate")
+							}
+						}
+						else{
+							//np state
+							alert("No State")
+						}
+					}else{
+						//no password
+						alert("No Password")
+					}
+				}else{
+					//no username
+			  	alert("No Username")
+			  }
+		  }
+		})
+	</script>
+</body>
+</html>

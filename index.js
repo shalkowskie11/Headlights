@@ -8,6 +8,7 @@ app.get('/api/posts', function (req, res){
 	Post.find(function(err, posts){
 		if(err) { return next (err) }
 			res.json(posts)
+
 	})
 })
 
@@ -20,6 +21,7 @@ app.post('/api/posts', function (req, res, next) {
 	console.log(post)
 	post.save(function (err, post){
 		if (err) { return next(err) }
+			//res.status(201).json("DOES THIS WORK??");
 		res.status(201).json(post)
 	})
 })

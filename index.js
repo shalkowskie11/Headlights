@@ -29,6 +29,6 @@ app.get('/', function (req, res) {
 	res.sendfile('layouts/posts.html')
 })
 
-app.listen(5000, function () {
+app.listen(process.env.PORT || 5000, function () {
 	console.log('Server listening on', 5000)
 })
